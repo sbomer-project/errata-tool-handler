@@ -1,0 +1,61 @@
+version: '3.8'
+
+# Intended to be run from the podman directory
+
+services:
+
+  kafka:
+      image: quay.io/strimzi/kafka:latest-kafka-3.7.0
+      ports:
+        - "9092:9092"
+      volumes:
+        - ./kafka-config/server.properties:/opt/kafka/config/server.properties
+        - ./kafka-data:/var/lib/kafka
+      environment:
+        LOG_DIR: /var/lib/kafka
+      command: >
+        bash -c "
+          /opt/kafka/bin/kafka-storage.sh format \
+            --config /opt/kafka/config/server.properties \
+            --cluster-id 'ciVofVj9T9aU1a3S-n3CBA' \
+            --ignore-formatted ;
+          /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties
+        " 
+      healthcheck:
+        test: ["CMD-SHELL", "/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list"]
+        interval: 15s
+        timeout: 10s
+        retries: 10
+
+  schema-registry:
+    image: quay.io/apicurio/apicurio-registry:latest
+    ports:
+      - "8081:8080"
+    environment:
+      # Use the 'kafkasql' storage to persist data in a Kafka topic
+      APICURIO_STORAGE_KIND: kafkasql
+      # Point to existing 'kafka' service
+      APICURIO_KAFKASQL_BOOTSTRAP_SERVERS: kafka:9092
+    depends_on:
+      kafka:
+        condition: service_healthy
+    healthcheck:
+      # Check if the registry's API is responding
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/apis/registry/v2 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  errata-tool-handler:
+    build:
+      context: ../.
+      dockerfile: src/main/docker/Dockerfile.jvm
+    ports:
+      - "8080:8080"
+    depends_on:
+      kafka:
+        condition: service_healthy
+      schema-registry:
+        condition: service_healthy
+    environment:
+      QUARKUS_MESSAGING_OUTGOING_GENERATIONS_REQUESTS_BOOTSTRAP_SERVERS: kafka:9093
