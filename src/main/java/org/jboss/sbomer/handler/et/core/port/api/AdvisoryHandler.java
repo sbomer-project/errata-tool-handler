@@ -1,8 +1,5 @@
 package org.jboss.sbomer.handler.et.core.port.api;
 
-import java.util.List;
-
-import org.jboss.sbomer.handler.et.core.domain.generation.Generation;
 import org.jboss.sbomer.handler.et.core.domain.generation.GenerationRequest;
 
 /**

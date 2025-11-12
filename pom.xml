@@ -175,6 +175,26 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>net.revelc.code</groupId>
+                <artifactId>impsort-maven-plugin</artifactId>
+                <version>1.12.0</version>
+                <configuration>
+                    <groups>javax.,java.,org.,com.</groups>
+                    <lineEnding>LF</lineEnding>
+                    <staticGroups>java,*</staticGroups>
+                    <removeUnused>true</removeUnused>
+                    <staticAfter>false</staticAfter>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>sort-imports</id>
+                        <goals>
+                            <goal>sort</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
