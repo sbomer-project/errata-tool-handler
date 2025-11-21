@@ -1,0 +1,63 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:recommended",
+        ":automergePatch",
+        ":automergeDigest"
+    ],
+    "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
+    "forkProcessing": "disabled",
+    "branchPrefix": "renovate-bot/",
+    "rebaseWhen": "behind-base-branch",
+    "timezone": "Europe/Warsaw",
+    "labels": [
+        "dependencies"
+    ],
+    "configMigration": true,
+    "vulnerabilityAlerts": {
+        "labels": [
+            "security"
+        ]
+    },
+    "prConcurrentLimit": 20,
+    "packageRules": [
+        {
+            "matchFileNames": [
+                "**/pom.xml"
+            ],
+            "addLabels": [
+                "deps:java"
+            ]
+        },
+        {
+            "groupName": "Surefire",
+            "groupSlug": "maven-surefire",
+            "matchDatasources": [
+                "maven"
+            ],
+            "matchPackageNames": [
+                "org.apache.maven.plugins:maven-surefire-plugin"
+            ]
+        },
+        {
+            "groupName": "Surefire",
+            "groupSlug": "maven-failsafe",
+            "matchDatasources": [
+                "maven"
+            ],
+            "matchPackageNames": [
+                "org.apache.maven.plugins:maven-failsafe-plugin"
+            ]
+        },
+        {
+            "matchPackageNames": [
+                "io.quarkus:quarkus-maven-plugin"
+            ],
+            "matchManagers": [
+                "maven"
+            ],
+            "enabled": false
+        }
+    ],
+    "platformAutomerge": true
+}
