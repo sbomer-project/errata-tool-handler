@@ -10,12 +10,14 @@ import java.util.concurrent.CompletableFuture;
 import org.eclipse.microprofile.reactive.messaging.Message;
 import org.jboss.sbomer.handler.et.adapter.in.UmbAdvisoryHandler;
 import org.jboss.sbomer.handler.et.core.port.api.AdvisoryHandler;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import dev.openfeature.sdk.Client;
 import io.smallrye.reactive.messaging.amqp.IncomingAmqpMetadata;
 import io.vertx.core.json.JsonObject;
 
@@ -25,8 +27,20 @@ class UmbAdvisoryHandlerTest {
     @Mock
     AdvisoryHandler advisoryHandler;
 
+    @Mock
+    Client featureClient;
+
+
     @InjectMocks
     UmbAdvisoryHandler umbAdvisoryHandler;
+
+    @BeforeEach
+    void setup() {
+        // Default behavior: Feature flag is ENABLED for all tests unless specified otherwise
+        // matches: getBooleanValue("umb.handler.enabled", true)
+        lenient().when(featureClient.getBooleanValue(eq("umb.handler.enabled"), anyBoolean()))
+                .thenReturn(true);
+    }
 
     @Test
     void shouldTriggerGenerationForQEStatus() {
@@ -111,6 +125,27 @@ class UmbAdvisoryHandlerTest {
         umbAdvisoryHandler.process(message);
 
         // Then it should assume it's garbage and Ack it to remove from queue
+        verify(advisoryHandler, never()).requestGenerations(anyString());
+        verify(message).ack();
+    }
+
+    @Test
+    void shouldSkipProcessingWhenFlagDisabled() {
+        // Given the feature flag is DISABLED
+        when(featureClient.getBooleanValue(eq("umb.handler.enabled"), anyBoolean()))
+                .thenReturn(false);
+
+        // And a valid payload
+        String payload = new JsonObject()
+                .put("errata_id", 12345)
+                .put("errata_status", "QE")
+                .encode();
+        Message<byte[]> message = mockMessage(payload, "errata.activity.status");
+
+        // When processed
+        umbAdvisoryHandler.process(message);
+
+        // Then business logic should be skipped, but message acked
         verify(advisoryHandler, never()).requestGenerations(anyString());
         verify(message).ack();
     }

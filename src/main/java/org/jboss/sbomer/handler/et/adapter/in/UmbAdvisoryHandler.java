@@ -9,6 +9,7 @@ import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.eclipse.microprofile.reactive.messaging.Message;
 import org.jboss.sbomer.handler.et.core.port.api.AdvisoryHandler;
 
+import dev.openfeature.sdk.Client;
 import io.smallrye.reactive.messaging.amqp.IncomingAmqpMetadata;
 import io.smallrye.reactive.messaging.annotations.Blocking;
 import io.vertx.core.json.JsonObject;
@@ -25,7 +26,6 @@ import lombok.extern.slf4j.Slf4j;
  * 5. Returns? todo
  */
 
-
 /**
  * Handler for processing advisory updates messages received via UMB.
  * Acts as a Driving Adapter to trigger the domain logic.
@@ -37,9 +37,12 @@ public class UmbAdvisoryHandler {
     private static final Set<String> RELEVANT_STATUSES = Set.of("QE", "SHIPPED_LIVE");
     private final AdvisoryHandler advisoryHandler;
 
+    private final Client featureClient;
+
     @Inject
-    UmbAdvisoryHandler(AdvisoryHandler advisoryHandler) {
+    UmbAdvisoryHandler(AdvisoryHandler advisoryHandler, Client featureClient) {
         this.advisoryHandler = advisoryHandler;
+        this.featureClient = featureClient;
     }
 
     /**
@@ -49,6 +52,11 @@ public class UmbAdvisoryHandler {
     @Incoming("errata")
     @Blocking(ordered = false)
     public CompletionStage<Void> process(Message<byte[]> message) {
+        boolean featureEnabled = featureClient.getBooleanValue("umb.handler.enabled", true);
+        if (!featureEnabled) {
+            log.debug("Handler disabled via feature flag.");
+            return message.ack();
+        }
         log.debug("Received new Errata tool status change notification");
 
         // 1. Validate Subject via Metadata
