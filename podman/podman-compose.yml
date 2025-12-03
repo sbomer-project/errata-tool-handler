@@ -53,8 +53,8 @@ services:
     networks:
       - sbomer
 
-  unleash-db:
-    image: postgres:15
+  unleash-database:
+    image: docker.io/library/postgres:latest
     environment:
       POSTGRES_DB: unleash
       POSTGRES_USER: unleash_user
@@ -68,20 +68,21 @@ services:
       retries: 5
 
   unleash:
-    image: unleashorg/unleash-server
+    image: docker.io/unleashorg/unleash-server:latest
     ports:
       - "4242:4242"
     environment:
-      DATABASE_HOST: unleash-db
+      DATABASE_HOST: unleash-database
       DATABASE_NAME: unleash
-      DATABASE_USER: unleash_user
+      DATABASE_USERNAME: unleash_user
       DATABASE_PASSWORD: unleash_password
       DATABASE_SSL: "false"
       # Auto-creates the token used in your Java code so you don't have to do it manually in the UI
       INIT_CLIENT_API_TOKENS: "default:development.unleash-insecure-api-token"
     depends_on:
-      unleash-db:
+      unleash-database:
         condition: service_healthy
+
     networks:
       - sbomer
 
@@ -96,11 +97,10 @@ services:
         condition: service_healthy
       schema-registry:
         condition: service_healthy
-      unleash:
-        condition: service_started
     environment:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
       SCHEMA_REGISTRY_URL: http://schema-registry:8080/apis/registry/v2
+      UNLEASH_API_URL: http://unleash:4242/api
     networks:
       - sbomer
 
