@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletionStage;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.eclipse.microprofile.reactive.messaging.Message;
 import org.jboss.sbomer.handler.et.core.port.api.AdvisoryHandler;
@@ -39,6 +40,9 @@ public class UmbAdvisoryHandler {
 
     private final Client featureClient;
 
+    @ConfigProperty(name = "sbomer.features.umb.enabled.openfeature.default")
+    boolean umbDefaultEnabled;
+
     @Inject
     UmbAdvisoryHandler(AdvisoryHandler advisoryHandler, Client featureClient) {
         this.advisoryHandler = advisoryHandler;
@@ -52,7 +56,7 @@ public class UmbAdvisoryHandler {
     @Incoming("errata")
     @Blocking(ordered = false)
     public CompletionStage<Void> process(Message<byte[]> message) {
-        boolean featureEnabled = featureClient.getBooleanValue("umb.handler.enabled", true);
+        boolean featureEnabled = featureClient.getBooleanValue("umb.handler.enabled", umbDefaultEnabled);
         if (!featureEnabled) {
             log.debug("Handler disabled via feature flag.");
             return message.ack();

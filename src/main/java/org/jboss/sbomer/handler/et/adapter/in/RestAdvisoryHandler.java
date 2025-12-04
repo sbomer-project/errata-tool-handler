@@ -1,5 +1,6 @@
 package org.jboss.sbomer.handler.et.adapter.in;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.sbomer.handler.et.adapter.in.dto.AdvisoryRequest;
 import org.jboss.sbomer.handler.et.adapter.in.dto.AdvisoryRequestResponse;
 import org.jboss.sbomer.handler.et.core.domain.generation.GenerationRequest;
@@ -29,6 +30,9 @@ public class RestAdvisoryHandler {
     private AdvisoryHandler advisoryHandler;
     private Client featureClient;
 
+    @ConfigProperty(name = "sbomer.features.rest.enabled.openfeature.default")
+    boolean restDefaultEnabled;
+
     @Inject
     RestAdvisoryHandler(AdvisoryHandler advisoryHandler, Client featureClient) {
         this.advisoryHandler = advisoryHandler;
@@ -38,7 +42,7 @@ public class RestAdvisoryHandler {
     @POST
     @Path("/generate")
     public AdvisoryRequestResponse requestAdvisory(@Valid AdvisoryRequest advisoryInfo) {
-        boolean featureEnabled = featureClient.getBooleanValue("rest.handler.enabled", true);
+        boolean featureEnabled = featureClient.getBooleanValue("rest.handler.enabled", restDefaultEnabled);
         if (!featureEnabled) {
             log.debug("REST Handler disabled via feature flag.");
             return null;
