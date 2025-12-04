@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.jboss.sbomer.events.common.FailureSpec;
 import org.jboss.sbomer.handler.et.core.domain.advisory.Advisory;
 import org.jboss.sbomer.handler.et.core.domain.advisory.Build;
 import org.jboss.sbomer.handler.et.core.domain.exception.AdvisoryProcessingException;
@@ -15,13 +16,12 @@ import org.jboss.sbomer.handler.et.core.port.spi.ErrataTool;
 import org.jboss.sbomer.handler.et.core.port.spi.FailureNotifier;
 import org.jboss.sbomer.handler.et.core.port.spi.GenerationRequestService;
 import org.jboss.sbomer.handler.et.core.port.spi.Koji;
+import org.jboss.sbomer.handler.et.core.utility.FailureUtility;
+import org.jboss.sbomer.handler.et.core.utility.TsidUtility;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
-import org.jboss.sbomer.handler.et.core.utility.FailureUtility;
-import org.jboss.sbomer.events.common.FailureSpec;
-import org.jboss.sbomer.handler.et.core.utility.TsidUtility;
 
 @ApplicationScoped
 @Slf4j

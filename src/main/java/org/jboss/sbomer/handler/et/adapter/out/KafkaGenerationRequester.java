@@ -1,7 +1,19 @@
 package org.jboss.sbomer.handler.et.adapter.out;
 
+import java.time.Instant;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
+import org.jboss.sbomer.events.common.ContextSpec;
+import org.jboss.sbomer.events.common.GenerationRequestSpec;
+import org.jboss.sbomer.events.common.PublisherSpec;
+import org.jboss.sbomer.events.common.Target;
+import org.jboss.sbomer.events.request.RequestData;
+import org.jboss.sbomer.events.request.RequestsCreated;
 import org.jboss.sbomer.handler.et.core.ApplicationConstants;
 import org.jboss.sbomer.handler.et.core.domain.generation.Generation;
 import org.jboss.sbomer.handler.et.core.domain.generation.GenerationRequest;
@@ -11,19 +23,6 @@ import org.jboss.sbomer.handler.et.core.port.spi.GenerationRequestService;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
-
-import org.jboss.sbomer.events.request.RequestsCreated;
-import org.jboss.sbomer.events.request.RequestData;
-import org.jboss.sbomer.events.common.ContextSpec;
-import org.jboss.sbomer.events.common.GenerationRequestSpec;
-import org.jboss.sbomer.events.common.Target;
-import org.jboss.sbomer.events.common.PublisherSpec;
-
-import java.time.Instant;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 @ApplicationScoped
 @Slf4j
