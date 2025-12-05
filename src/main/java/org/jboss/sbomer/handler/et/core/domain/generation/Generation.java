@@ -1,7 +1,6 @@
 package org.jboss.sbomer.handler.et.core.domain.generation;
 
 import org.jboss.sbomer.handler.et.core.domain.advisory.Build;
-
 import org.jboss.sbomer.handler.et.core.utility.TsidUtility;
 
 public record Generation(String id, GenerationTarget target) {

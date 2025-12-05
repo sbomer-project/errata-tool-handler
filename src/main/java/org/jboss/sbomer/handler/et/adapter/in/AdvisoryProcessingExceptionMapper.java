@@ -1,9 +1,10 @@
 package org.jboss.sbomer.handler.et.adapter.in;
 
+import org.jboss.sbomer.handler.et.core.domain.exception.AdvisoryProcessingException;
+
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
-import org.jboss.sbomer.handler.et.core.domain.exception.AdvisoryProcessingException;
 
 // The @Provider annotation registers this with JAX-RS
 @Provider

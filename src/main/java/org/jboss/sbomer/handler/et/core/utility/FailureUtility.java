@@ -1,11 +1,11 @@
 package org.jboss.sbomer.handler.et.core.utility;
 
-import org.jboss.sbomer.events.common.FailureSpec;
-
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.jboss.sbomer.events.common.FailureSpec;
 
 public class FailureUtility {
 

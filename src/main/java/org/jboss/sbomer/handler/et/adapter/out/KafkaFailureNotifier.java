@@ -1,25 +1,26 @@
 package org.jboss.sbomer.handler.et.adapter.out;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import lombok.extern.slf4j.Slf4j;
+import java.io.ByteArrayOutputStream;
+import java.nio.ByteBuffer;
+import java.time.Instant;
+import java.util.UUID;
+
 import org.apache.avro.io.BinaryEncoder;
 import org.apache.avro.io.EncoderFactory;
 import org.apache.avro.specific.SpecificDatumWriter;
 import org.apache.avro.specific.SpecificRecordBase;
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
-import org.jboss.sbomer.handler.et.core.ApplicationConstants;
-import org.jboss.sbomer.handler.et.core.port.spi.FailureNotifier;
 import org.jboss.sbomer.events.common.ContextSpec;
 import org.jboss.sbomer.events.common.FailureSpec;
 import org.jboss.sbomer.events.error.ErrorData;
 import org.jboss.sbomer.events.error.ProcessingFailed;
+import org.jboss.sbomer.handler.et.core.ApplicationConstants;
+import org.jboss.sbomer.handler.et.core.port.spi.FailureNotifier;
 
-import java.io.ByteArrayOutputStream;
-import java.nio.ByteBuffer;
-import java.time.Instant;
-import java.util.UUID;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import lombok.extern.slf4j.Slf4j;
 
 @ApplicationScoped
 @Slf4j
