@@ -19,15 +19,6 @@ import jakarta.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * WHAT IT DOES
- * 1. Listening to the UMB on its own
- * 2. Checks for the right topic todo(make into config)
- * 3. Checks the status, if it is from QE or SHIPPED_LIVE todo(do we need this?)
- * 4. Calls AdvisoryHandler method requestGenerations()
- * 5. Returns? todo
- */
-
-/**
  * Handler for processing advisory updates messages received via UMB.
  * Acts as a Driving Adapter to trigger the domain logic.
  */
