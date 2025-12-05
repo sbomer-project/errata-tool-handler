@@ -53,6 +53,8 @@ services:
     networks:
       - sbomer
 
+  # Unleash and Unleash-database is not necessary to run the errata-tool-handler,
+  # but is inluced as it could be useful for testing feature flags locally 
   unleash-database:
     image: docker.io/library/postgres:latest
     environment:
@@ -97,10 +99,16 @@ services:
         condition: service_healthy
       schema-registry:
         condition: service_healthy
+      amqp-broker:
+        condition: service_started
     environment:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
       SCHEMA_REGISTRY_URL: http://schema-registry:8080/apis/registry/v2
       UNLEASH_API_URL: http://unleash:4242/api
+      UMB_BROKER_HOST: amqp-broker
+      UMB_BROKER_PORT: 5672 # AMQP unencrypted port for local dev purposes
+      SBOMER_CONSUMER_ERRATA_TOPIC: errata.activity.status
+      
     networks:
       - sbomer
 
@@ -119,5 +127,19 @@ services:
         condition: service_healthy
       schema-registry:
         condition: service_healthy
+    networks:
+      - sbomer
+
+  # AMQP Broker is not necessary to run the errata-tool-handler,
+  # but is as a possibility to test AMQP functionality locally
+  amqp-broker:
+    image: quay.io/artemiscloud/activemq-artemis-broker-kubernetes:latest
+    ports:
+      - "5672:5672" # AMQP, unencrypted for dev local purposes
+      - "8161:8161" # Console
+    environment:
+      AMQ_USER: admin
+      AMQ_PASSWORD: password
+      AMQ_EXTRA_ARGS: --no-autotune
     networks:
       - sbomer
