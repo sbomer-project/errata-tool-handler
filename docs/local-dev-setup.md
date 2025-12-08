@@ -14,50 +14,28 @@ bash ./hack/run-compose.sh
 
 ## 1. UMB Handler (AMQP)
 
-To test the UMB handler, you must inject a simulated message directly into the ActiveMQ Artemis broker running in the pod.
+To test the UMB handler, you can use the helper script to inject a simulated message directly into the ActiveMQ Artemis broker from your local machine.
 
 **Prerequisites:**
-* Shell access to the Artemis pod via `podman exec -it <artemis-pod-name> /bin/sh`.
-* Broker running on port `8161` (Console/Jolokia).
-* Default credentials: `admin:admin`.
-* `sbomer.umb.ssl=false` in `application.properties` to disable SSL for local dev.
+* The Artemis container must be running with port `8161` exposed (Console/Jolokia).
+* `sbomer.umb.ssl=false` in `application.properties` (or `SBOMER_UMB_SSL=false` env var) to disable SSL for the application connection.
+
+
 
 ### The Trigger Command
-Run this inside the **Artemis pod terminal**:
+
+Run the script from your host terminal:
 
 ```bash
-curl -H "Content-Type: application/json" \
-     -H "Origin: http://$(hostname):8161" \
-     -u admin:admin \
-     -d '{
-    "type": "exec",
-    "mbean": "org.apache.activemq.artemis:broker=\"broker\",component=addresses,address=\"errata.activity.status\"",
-    "operation": "sendMessage(java.util.Map,int,java.lang.String,boolean,java.lang.String,java.lang.String)",
-    "arguments": [
-      {"subject":"errata.activity.status"},
-      4,
-      "eyJlcnJhdGFfaWQiOjEyMzQ1LCJlcnJhdGFfc3RhdHVzIjoiUUUifQ==",
-      false,
-      "admin",
-      "admin"
-    ]
-  }' \
-  http://$(hostname):8161/console/jolokia/
-  ```
+./hack/trigger-umb.sh <ERRATA_ID> <STATUS>
+```
 
-  Note:
-  `eyJlcnJhdGFfaWQiOjEyMzQ1LCJlcnJhdGFfc3RhdHVzIjoiUUUifQ==` is the Base64-encoded JSON payload:
-  ```json
-  {
-    "errata_id": 12345,
-    "errata_status": "QE"
-  }
-  ```
+Example:
+```bash
+./hack/trigger-umb.sh 1234 QE
+```
 
 
-
-
-  
 ## 2. REST Handler (HTTP)
 We can then invoke advisory generation manually with the request below:
 
