@@ -56,11 +56,11 @@ services:
   # Unleash and Unleash-database is not necessary to run the errata-tool-handler,
   # but is inluced as it could be useful for testing feature flags locally 
   unleash-database:
-    image: docker.io/library/postgres:latest
+    image: quay.io/fedora/postgresql-16:latest
     environment:
-      POSTGRES_DB: unleash
-      POSTGRES_USER: unleash_user
-      POSTGRES_PASSWORD: unleash_password
+      POSTGRESQL_DATABASE: unleash
+      POSTGRESQL_USER: unleash_user
+      POSTGRESQL_PASSWORD: unleash_password
     networks:
       - sbomer
     healthcheck:
