@@ -108,6 +108,7 @@ services:
       UMB_BROKER_HOST: amqp-broker
       UMB_BROKER_PORT: 5672 # AMQP unencrypted port for local dev purposes
       SBOMER_CONSUMER_ERRATA_TOPIC: errata.activity.status
+      SBOMER_UMB_SSL: "false" # Disable SSL for local dev purposes
       
     networks:
       - sbomer
