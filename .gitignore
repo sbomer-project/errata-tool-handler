@@ -28,7 +28,12 @@ replay_pid*
 # temporarily need to fetch sbomer-contracts repo manually to include avro schema objects in the build
 sbomer-contracts/
 
+.DS_Store
+
 # Kafka local dev instance logs
 podman/kafka-data/
+
+# ignore local dev setup
+sbomer-local-dev/
 
 target/
