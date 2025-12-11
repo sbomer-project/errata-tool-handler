@@ -7,9 +7,13 @@ This allows you to verify the end-to-end flow (Handler → Service) without rely
 
 ## 0. Prerequisites
 
-Run all the necessary services locally using podman-compose from the root of the repository:
+Run all the necessary services locally using the podman-compose from `sbomer-local-dev` from the root of the repository:
 ```shell script
-bash ./hack/run-compose.sh
+bash ./hack/setup-local-dev.sh
+```
+And then leaving the terminal open, run:
+```shell script
+bash ./hack/run-compose-with-local-build.sh
 ```
 
 ## 1. UMB Handler (AMQP)

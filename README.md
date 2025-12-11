@@ -1,18 +1,20 @@
 # errata-tool-handler
 A component of SBOMer NextGen that listens to advisories to invoke automatic SBOM generations from them, and to request generations for specific advisories
 
-## Getting Started (Development) (WIP)
+## Getting Started (Development)
 
-We can run the component locally through podman-compose, which will run the component with an ephemeral Kafka and Apicurio instance:
+### 1. Start the Infrastructure
 
-```shell script
-bash ./hack/run-compose.sh
-```
-
-TODO: As the new components are implemented, they can be stood up in this podman-compose file using latest tagged images from Quay. This is so local deployment of the wider system can be possible for local development and testing purposes.
-
-We can then invoke advisory generation manually with the request below:
+Run the local dev setup script from the root of the project repository to set up the minikube environment:
 
 ```shell script
-curl -i -X POST -H "Content-Type: application/json" -d '{"advisoryId": "1234"}' http://localhost:8080/v1/errata-tool/generate
+bash ./hack/setup-local-dev.sh
 ```
+
+Then run the command below to start the podman-compose with the component build:
+
+```bash
+bash ./hack/run-compose-with-local-build.sh
+```
+
+This will spin up the manifest-storage-service on port 8085 along with the latest Quay images of the other components of the system.
