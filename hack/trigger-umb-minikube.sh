@@ -1,6 +1,5 @@
 #!/bin/bash
 # Triggers a UMB event by compiling and running a custom Java Sender inside the pod.
-# Fixes "unexpected EOF" errors by using pipe streaming instead of variables.
 
 ERRATA_ID=${1:-123456}
 STATUS=${2:-QE}
