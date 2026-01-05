@@ -1,0 +1,48 @@
+{{- if .Values.amqpBroker.deployInternal }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "errata-tool-handler-chart.fullname" . }}-amqp
+  labels:
+    {{- include "errata-tool-handler-chart.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: amqp-broker
+  template:
+    metadata:
+      labels:
+        app: amqp-broker
+    spec:
+      containers:
+        - name: amqp-broker
+          image: {{ .Values.amqpBroker.image }}
+          ports:
+            - containerPort: {{ .Values.amqpBroker.port }}
+            - containerPort: {{ .Values.amqpBroker.consolePort }}
+          env:
+            - name: AMQ_USER
+              value: {{ .Values.amqpBroker.user | quote }}
+            - name: AMQ_PASSWORD
+              value: {{ .Values.amqpBroker.password | quote }}
+            - name: AMQ_EXTRA_ARGS
+              value: "--no-autotune"
+            - name: ARTEMIS_IP
+              value: "0.0.0.0"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "errata-tool-handler-chart.fullname" . }}-amqp-svc
+spec:
+  ports:
+    - port: {{ .Values.amqpBroker.port }}
+      targetPort: {{ .Values.amqpBroker.port }}
+      name: amqp
+    - port: {{ .Values.amqpBroker.consolePort }}
+      targetPort: {{ .Values.amqpBroker.consolePort }}
+      name: console
+  selector:
+    app: amqp-broker
+{{- end }}

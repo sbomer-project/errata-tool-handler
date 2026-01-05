@@ -49,6 +49,25 @@ spec:
               value: {{ .Values.config.kafka.bootstrapServers | quote }}
             - name: SCHEMA_REGISTRY_URL
               value: {{ .Values.config.kafka.schemaRegistryUrl | quote }}
+            # Logic: If deploying internal broker, use its service name; otherwise use .Values.umb.host
+            - name: UMB_BROKER_HOST
+              value: {{ if .Values.amqpBroker.deployInternal -}}
+                       {{ include "errata-tool-handler-chart.fullname" . }}-amqp-svc
+                     {{- else -}}
+                       {{ .Values.umb.host | quote }}
+                     {{- end }}
+            - name: UMB_BROKER_PORT
+              value: {{ .Values.umb.port | quote }}
+            - name: SBOMER_CONSUMER_ERRATA_TOPIC
+              value: {{ .Values.umb.errataTopic | quote }}
+            # Map the Quarkus SSL property
+            - name: SBOMER_UMB_SSL
+              value: {{ if .Values.amqpBroker.deployInternal -}} "false" {{- else -}} {{ .Values.umb.ssl | quote }} {{- end }}
+            # Credentials (TODO use secrets here for prod)
+            - name: AMQP_USER
+              value: {{ .Values.amqpBroker.user | quote }}
+            - name: AMQP_PASSWORD
+              value: {{ .Values.amqpBroker.password | quote }}
           {{- with .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}

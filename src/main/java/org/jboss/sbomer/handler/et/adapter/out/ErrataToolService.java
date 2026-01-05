@@ -20,8 +20,7 @@ public class ErrataToolService implements ErrataTool {
 
         // Simulate getting a list of varied builds from an advisory from ET
         List<Build> builds = new ArrayList<>();
-        builds.add(new Build(456L, "container-1.0", "CONTAINER_IMAGE", "ABC"));
-        builds.add(new Build(789L, "other-container-2.1", "CONTAINER_IMAGE", "XYZ"));
+        builds.add(new Build(456L, "sbom-service-latest", "CONTAINER_IMAGE", "quay.io/sbomer/sbom-service:latest"));
 
         log.debug("Fetched {} builds for advisory with ID: '{}'", builds.size(), advisoryId);
 
