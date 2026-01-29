@@ -46,7 +46,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "errata-tool-handler-chart.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "errata-tool-handler-chart.name" . }}
+app.kubernetes.io/name: sbomer-errata-tool-handler
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
