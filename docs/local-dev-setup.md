@@ -7,13 +7,13 @@ This allows you to verify the end-to-end flow (Handler → Service) without rely
 
 ## 0. Prerequisites
 
-Run all the necessary services locally using the podman-compose from `sbomer-local-dev` from the root of the repository:
+Run all the necessary services locally using the helm from `sbomer-local-dev` from the root of the repository:
 ```shell script
 bash ./hack/setup-local-dev.sh
 ```
 And then leaving the terminal open, run:
 ```shell script
-bash ./hack/run-compose-with-local-build.sh
+bash ./hack/run-helm-with-local-build.sh
 ```
 
 ## 1. UMB Handler (AMQP)
@@ -31,16 +31,20 @@ To test the UMB handler, you can use the helper script to inject a simulated mes
 Run the script from your host terminal:
 
 ```bash
-./hack/trigger-umb.sh <ERRATA_ID> <STATUS>
+./hack/trigger-umb-minikube.sh <ERRATA_ID> <STATUS>
 ```
 
 Example:
 ```bash
-./hack/trigger-umb.sh 1234 QE
+./hack/trigger-umb-minikube.sh 1234 QE
 ```
 
 
 ## 2. REST Handler (HTTP)
+If running in minikube, have to be exposed via to send the request to the service:
+```shell
+kubectl port-forward svc/errata-tool-handler-errata-tool-handler-chart 8080:8080 -n sbomer-test
+```
 We can then invoke advisory generation manually with the request below:
 
 ```shell script
