@@ -19,6 +19,8 @@ import org.jboss.sbomer.handler.et.core.port.spi.Koji;
 import org.jboss.sbomer.handler.et.core.utility.FailureUtility;
 import org.jboss.sbomer.handler.et.core.utility.TsidUtility;
 
+import io.opentelemetry.instrumentation.annotations.SpanAttribute;
+import io.opentelemetry.instrumentation.annotations.WithSpan;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
@@ -48,8 +50,9 @@ public class AdvisoryService implements AdvisoryHandler {
         this.failureNotifier = failureNotifier;
     }
 
+    @WithSpan
     @Override
-    public GenerationRequest requestGenerations(String advisoryId) {
+    public GenerationRequest requestGenerations(@SpanAttribute("advisory.id") String advisoryId) {
         log.info("Handling advisory: {}...", advisoryId);
 
         try {
@@ -89,7 +92,7 @@ public class AdvisoryService implements AdvisoryHandler {
             log.error("Failed to handle advisory '{}' due to an unexpected error: {}", advisoryId, e.getMessage(), e);
             FailureSpec failure = FailureUtility.buildFailureSpecFromException(e);
             // Notify the failure (the source is null, no source event).
-            failureNotifier.notify(failure, null, null);
+            failureNotifier.notify(failure, advisoryId, null);
             throw new AdvisoryProcessingException("Failed to process advisory " + advisoryId, e);
         }
     }
