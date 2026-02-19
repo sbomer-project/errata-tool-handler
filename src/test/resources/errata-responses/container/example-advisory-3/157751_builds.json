@@ -1,0 +1,80 @@
+{
+  "RHEL-9-JBEAP-8.0": {
+    "name": "RHEL-9-JBEAP-8.0",
+    "description": "Red Hat JBoss Enterprise Application Platform 8.0 for RHEL 9",
+    "builds": [
+      {
+        "jboss-eap8-openjdk21-builder-openshift-container-1.0.1.GA-10.1767793526": {
+          "nvr": "jboss-eap8-openjdk21-builder-openshift-container-1.0.1.GA-10.1767793526",
+          "nevr": "jboss-eap8-openjdk21-builder-openshift-container-0:1.0.1.GA-10.1767793526",
+          "id": 3924690,
+          "is_module": false,
+          "variant_arch": {
+            "9Base-JBEAP-8.0": {
+              "multi": [
+                {
+                  "filename": "docker-image-sha256:2d4d2a16e4dc4737062706fb6fcae02770ef048d8d6b54a164b417f4ed6b953a.aarch64.tar.gz",
+                  "is_signed": false
+                },
+                {
+                  "filename": "docker-image-sha256:e2111f33e45222a8021cb29e1bb16bf6aea8911740fc2140954bacdc38240c9b.s390x.tar.gz",
+                  "is_signed": false
+                },
+                {
+                  "filename": "docker-image-sha256:c9b0dfba8e632cf04bfbfce8e36936bf3bd1be5892b10a62b45bb2c539e9f1ce.ppc64le.tar.gz",
+                  "is_signed": false
+                },
+                {
+                  "filename": "docker-image-sha256:9a992c3afe6b9c70db1c402ace99c9d5366f6e121e1b95f82421f3a54efd2e77.x86_64.tar.gz",
+                  "is_signed": false
+                }
+              ]
+            }
+          },
+          "added_by": "anonymized-user@example.com",
+          "is_signed": false
+        }
+      },
+      {
+        "jboss-eap8-openjdk21-runtime-openshift-container-1.0.1.GA-7.1767793530": {
+          "nvr": "jboss-eap8-openjdk21-runtime-openshift-container-1.0.1.GA-7.1767793530",
+          "nevr": "jboss-eap8-openjdk21-runtime-openshift-container-0:1.0.1.GA-7.1767793530",
+          "id": 3924674,
+          "is_module": false,
+          "variant_arch": {
+            "9Base-JBEAP-8.0": {
+              "multi": [
+                {
+                  "filename": "docker-image-sha256:a0be070f00074486d6918cb23a83a6f42454c831fe4a60c6045039eca55583bb.s390x.tar.gz",
+                  "is_signed": false
+                },
+                {
+                  "filename": "docker-image-sha256:5a3e58b74766676c823299bbb02f609b6f114d387aa12eba213f0816cf18eace.aarch64.tar.gz",
+                  "is_signed": false
+                },
+                {
+                  "filename": "docker-image-sha256:2877da17a6c290f2edb8e8a79e119b04588a29999a46c27c669b2f7500cf83db.x86_64.tar.gz",
+                  "is_signed": false
+                },
+                {
+                  "filename": "docker-image-sha256:193c2b9937b154a1b95ccddb7cc7b4d3a9cee1485977a5f1f10d3d764acda650.ppc64le.tar.gz",
+                  "is_signed": false
+                }
+              ]
+            }
+          },
+          "added_by": "anonymized-user@example.com",
+          "is_signed": false
+        }
+      }
+    ],
+    "sig_key": {
+      "name": "anonymized-key",
+      "keyid": "00000000"
+    },
+    "container_sig_key": {
+      "name": "anonymized-key",
+      "keyid": "00000000"
+    }
+  }
+}
