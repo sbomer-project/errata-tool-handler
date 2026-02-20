@@ -11,6 +11,8 @@ import org.eclipse.microprofile.reactive.messaging.Message;
 import org.jboss.sbomer.handler.et.core.port.api.AdvisoryHandler;
 
 import dev.openfeature.sdk.Client;
+import io.opentelemetry.api.trace.Span;
+import io.opentelemetry.api.trace.StatusCode;
 import io.smallrye.reactive.messaging.amqp.IncomingAmqpMetadata;
 import io.smallrye.reactive.messaging.annotations.Blocking;
 import io.vertx.core.json.JsonObject;
@@ -67,6 +69,9 @@ public class UmbAdvisoryHandler {
             json = new JsonObject(payload);
         } catch (Exception e) {
             log.error("Failed to parse UMB message payload. Raw payload: {}", payload, e);
+            Span span = Span.current();
+            span.recordException(e);
+            span.setStatus(StatusCode.ERROR, e.getMessage());
             return message.ack();
         }
 

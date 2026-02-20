@@ -55,7 +55,8 @@ helm upgrade --install sbomer-release "./$PLATFORM_DIR" \
     --create-namespace \
     --set global.includeKafka=true \
     --set global.includeApicurio=true \
-    --set global.includeApiGateway=true
+    --set global.includeApiGateway=true \
+    --set global.includeOtelLgtm=true
 
 helm upgrade --install errata-tool-handler "./helm/errata-tool-handler-chart" \
     --namespace $NAMESPACE \
