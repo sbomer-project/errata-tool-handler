@@ -1,0 +1,268 @@
+{
+  "RHEL-8-OSE-Middleware": {
+    "name": "RHEL-8-OSE-Middleware",
+    "description": "RHEL-8 based Middleware Containers",
+    "builds": [
+      {
+        "fuse-java-openshift-jdk17-rhel-8-container-1.13-15.1767882203": {
+          "nvr": "fuse-java-openshift-jdk17-rhel-8-container-1.13-15.1767882203",
+          "nevr": "fuse-java-openshift-jdk17-rhel-8-container-0:1.13-15.1767882203",
+          "id": 3925725,
+          "is_module": false,
+          "variant_arch": {
+            "8Base-RHOSE-Middleware": {
+              "multi": [
+                {
+                  "filename": "docker-image-sha256:f100bb5ad3ac4b1d92be3ec55cf6e26930e7ece0bac5cda564fe081892a840e6.ppc64le.tar.gz",
+                  "is_signed": false
+                },
+                {
+                  "filename": "docker-image-sha256:8d5aded80f4001e9ebb52694d7547d55a6fdd451ba6e6288723cfdc5d7ff0bd1.s390x.tar.gz",
+                  "is_signed": false
+                },
+                {
+                  "filename": "docker-image-sha256:653f72dd3d536bdd20d977e432b5e9a74ace2f94ef8ef846f485650b6bf7be93.x86_64.tar.gz",
+                  "is_signed": false
+                }
+              ]
+            }
+          },
+          "added_by": "anonymized-user@example.com",
+          "is_signed": false
+        }
+      },
+      {
+        "fuse-java-openshift-rhel-8-container-1.13-17.1767882175": {
+          "nvr": "fuse-java-openshift-rhel-8-container-1.13-17.1767882175",
+          "nevr": "fuse-java-openshift-rhel-8-container-0:1.13-17.1767882175",
+          "id": 3925723,
+          "is_module": false,
+          "variant_arch": {
+            "8Base-RHOSE-Middleware": {
+              "multi": [
+                {
+                  "filename": "docker-image-sha256:308dd8a91be651a098e32047ef0c2f22a535e19e6adc3a1f9478d21b560296df.x86_64.tar.gz",
+                  "is_signed": false
+                }
+              ]
+            }
+          },
+          "added_by": "anonymized-user@example.com",
+          "is_signed": false
+        }
+      },
+      {
+        "fuse-apicurito-rhel-8-operator-container-1.13-16.1767877156": {
+          "nvr": "fuse-apicurito-rhel-8-operator-container-1.13-16.1767877156",
+          "nevr": "fuse-apicurito-rhel-8-operator-container-0:1.13-16.1767877156",
+          "id": 3925604,
+          "is_module": false,
+          "variant_arch": {
+            "8Base-RHOSE-Middleware": {
+              "multi": [
+                {
+                  "filename": "docker-image-sha256:d7c3993158e1fc222be0f1b582f053f57a8f52f49ec3711f1159306aeb2e1f1f.x86_64.tar.gz",
+                  "is_signed": false
+                }
+              ]
+            }
+          },
+          "added_by": "anonymized-user@example.com",
+          "is_signed": false
+        }
+      },
+      {
+        "fuse-console-rhel-8-operator-container-1.13-17.1767877157": {
+          "nvr": "fuse-console-rhel-8-operator-container-1.13-17.1767877157",
+          "nevr": "fuse-console-rhel-8-operator-container-0:1.13-17.1767877157",
+          "id": 3925607,
+          "is_module": false,
+          "variant_arch": {
+            "8Base-RHOSE-Middleware": {
+              "multi": [
+                {
+                  "filename": "docker-image-sha256:d902a88d703337c294707c654ee66aa94d421cfe3bbee6e9e422965de3ffbc4c.s390x.tar.gz",
+                  "is_signed": false
+                },
+                {
+                  "filename": "docker-image-sha256:bcd9a785e879809d6cb5bb2f1854fd93085ce78e6ebe4f31bb0c77df89fcc3bf.ppc64le.tar.gz",
+                  "is_signed": false
+                },
+                {
+                  "filename": "docker-image-sha256:de3748562dbf9bdf81942b74b74ac49b3d449d668c7a4719712c6e8e4cab371d.x86_64.tar.gz",
+                  "is_signed": false
+                }
+              ]
+            }
+          },
+          "added_by": "anonymized-user@example.com",
+          "is_signed": false
+        }
+      },
+      {
+        "fuse-apicurito-generator-openshift-rhel-8-container-1.13-14.1767882469": {
+          "nvr": "fuse-apicurito-generator-openshift-rhel-8-container-1.13-14.1767882469",
+          "nevr": "fuse-apicurito-generator-openshift-rhel-8-container-0:1.13-14.1767882469",
+          "id": 3925727,
+          "is_module": false,
+          "variant_arch": {
+            "8Base-RHOSE-Middleware": {
+              "multi": [
+                {
+                  "filename": "docker-image-sha256:c52ea439488b7be217631a1a1e7cf000273af08fa06b58f7e36c51b63d9cb6b5.x86_64.tar.gz",
+                  "is_signed": false
+                }
+              ]
+            }
+          },
+          "added_by": "anonymized-user@example.com",
+          "is_signed": false
+        }
+      },
+      {
+        "fuse-apicurito-openshift-rhel-8-container-1.13-20.1767877160": {
+          "nvr": "fuse-apicurito-openshift-rhel-8-container-1.13-20.1767877160",
+          "nevr": "fuse-apicurito-openshift-rhel-8-container-0:1.13-20.1767877160",
+          "id": 3925602,
+          "is_module": false,
+          "variant_arch": {
+            "8Base-RHOSE-Middleware": {
+              "multi": [
+                {
+                  "filename": "docker-image-sha256:2dc139200d56be63379de39d53706b985b04292b9f8ac44612901d454e7f2779.x86_64.tar.gz",
+                  "is_signed": false
+                }
+              ]
+            }
+          },
+          "added_by": "anonymized-user@example.com",
+          "is_signed": false
+        }
+      },
+      {
+        "fuse-console-openshift-rhel-8-container-1.13-20.1767877159": {
+          "nvr": "fuse-console-openshift-rhel-8-container-1.13-20.1767877159",
+          "nevr": "fuse-console-openshift-rhel-8-container-0:1.13-20.1767877159",
+          "id": 3925606,
+          "is_module": false,
+          "variant_arch": {
+            "8Base-RHOSE-Middleware": {
+              "multi": [
+                {
+                  "filename": "docker-image-sha256:6d3b6f6ea6db58e4951aaf5bd1347eb2e3307936b40ed2c93e541189378ecbd0.ppc64le.tar.gz",
+                  "is_signed": false
+                },
+                {
+                  "filename": "docker-image-sha256:a5f74cc166e6bd92473daf7842d92d441956c82127494b9175d9a820575a8e29.s390x.tar.gz",
+                  "is_signed": false
+                },
+                {
+                  "filename": "docker-image-sha256:52245482b2940cdeaa81d0e86b943e5ae6235416ae865cf6557db18870daef37.x86_64.tar.gz",
+                  "is_signed": false
+                }
+              ]
+            }
+          },
+          "added_by": "anonymized-user@example.com",
+          "is_signed": false
+        }
+      },
+      {
+        "fuse-karaf-openshift-jdk11-rhel-8-container-1.13-17.1767878625": {
+          "nvr": "fuse-karaf-openshift-jdk11-rhel-8-container-1.13-17.1767878625",
+          "nevr": "fuse-karaf-openshift-jdk11-rhel-8-container-0:1.13-17.1767878625",
+          "id": 3925649,
+          "is_module": false,
+          "variant_arch": {
+            "8Base-RHOSE-Middleware": {
+              "multi": [
+                {
+                  "filename": "docker-image-sha256:e24e05f80c0fa43a1a3961b1306533042d48d795a8a0e35100a66081ed93ae1f.x86_64.tar.gz",
+                  "is_signed": false
+                }
+              ]
+            }
+          },
+          "added_by": "anonymized-user@example.com",
+          "is_signed": false
+        }
+      },
+      {
+        "fuse-java-openshift-jdk11-rhel-8-container-1.13-17.1767878624": {
+          "nvr": "fuse-java-openshift-jdk11-rhel-8-container-1.13-17.1767878624",
+          "nevr": "fuse-java-openshift-jdk11-rhel-8-container-0:1.13-17.1767878624",
+          "id": 3925647,
+          "is_module": false,
+          "variant_arch": {
+            "8Base-RHOSE-Middleware": {
+              "multi": [
+                {
+                  "filename": "docker-image-sha256:d92650971d6886fdb2afa16d442c10801e19d9af8f1e1189334a178c0d507bc1.s390x.tar.gz",
+                  "is_signed": false
+                },
+                {
+                  "filename": "docker-image-sha256:655e5b133141fe0a24d22156d862fb0f7e2b852bead29b90bf882cb8ce9d59c9.ppc64le.tar.gz",
+                  "is_signed": false
+                },
+                {
+                  "filename": "docker-image-sha256:87014c15d018cc75e80cf92f7e302dd63de18b6592bf83ac2b810b233c2be476.x86_64.tar.gz",
+                  "is_signed": false
+                }
+              ]
+            }
+          },
+          "added_by": "anonymized-user@example.com",
+          "is_signed": false
+        }
+      },
+      {
+        "fuse-karaf-openshift-rhel-8-container-1.13-15.1767882176": {
+          "nvr": "fuse-karaf-openshift-rhel-8-container-1.13-15.1767882176",
+          "nevr": "fuse-karaf-openshift-rhel-8-container-0:1.13-15.1767882176",
+          "id": 3925722,
+          "is_module": false,
+          "variant_arch": {
+            "8Base-RHOSE-Middleware": {
+              "multi": [
+                {
+                  "filename": "docker-image-sha256:951e5732616918aac79e638c62e215f518a48472bb941b99fec57e732988fcbb.x86_64.tar.gz",
+                  "is_signed": false
+                }
+              ]
+            }
+          },
+          "added_by": "anonymized-user@example.com",
+          "is_signed": false
+        }
+      },
+      {
+        "fuse-karaf-openshift-jdk17-rhel-8-container-1.13-15.1767882203": {
+          "nvr": "fuse-karaf-openshift-jdk17-rhel-8-container-1.13-15.1767882203",
+          "nevr": "fuse-karaf-openshift-jdk17-rhel-8-container-0:1.13-15.1767882203",
+          "id": 3925726,
+          "is_module": false,
+          "variant_arch": {
+            "8Base-RHOSE-Middleware": {
+              "multi": [
+                {
+                  "filename": "docker-image-sha256:e0be9789df8668df7994a9cc36f3c1dbc0113d6d9d6fea94e4a29da9f7878a7b.x86_64.tar.gz",
+                  "is_signed": false
+                }
+              ]
+            }
+          },
+          "added_by": "anonymized-user@example.com",
+          "is_signed": false
+        }
+      }
+    ],
+    "sig_key": {
+      "name": "anonymized-key",
+      "keyid": "00000000"
+    },
+    "container_sig_key": {
+      "name": "anonymized-key",
+      "keyid": "00000000"
+    }
+  }
+}
