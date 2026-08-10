@@ -1,0 +1,90 @@
+{
+  "RHEL-8.8.0.Z.E4S": {
+    "name": "RHEL-8.8.0.Z.E4S",
+    "description": "Red Hat Enterprise Linux 8.8 Update Services for SAP Solutions",
+    "builds": [
+      {
+        "spice-client-win-8.10-3.el8_8.1": {
+          "nvr": "spice-client-win-8.10-3.el8_8.1",
+          "nevr": "spice-client-win-0:8.10-3.el8_8.1",
+          "id": 3918400,
+          "is_module": false,
+          "variant_arch": {
+            "AppStream-8.8.0.Z.E4S": {
+              "SRPMS": [
+                {
+                  "filename": "spice-client-win-8.10-3.el8_8.1.src.rpm",
+                  "is_signed": true
+                }
+              ],
+              "noarch": [
+                {
+                  "filename": "spice-client-win-x64-8.10-3.el8_8.1.noarch.rpm",
+                  "is_signed": true
+                },
+                {
+                  "filename": "spice-client-win-x86-8.10-3.el8_8.1.noarch.rpm",
+                  "is_signed": true
+                }
+              ]
+            }
+          },
+          "added_by": "anonymized-user@example.com",
+          "is_signed": true
+        }
+      }
+    ],
+    "sig_key": {
+      "name": "anonymized-key",
+      "keyid": "00000000"
+    },
+    "container_sig_key": {
+      "name": "anonymized-key",
+      "keyid": "00000000"
+    }
+  },
+  "RHEL-8.8.0.Z.TUS": {
+    "name": "RHEL-8.8.0.Z.TUS",
+    "description": "Red Hat Enterprise Linux 8.8 Telecommunications Update Service",
+    "builds": [
+      {
+        "spice-client-win-8.10-3.el8_8.1": {
+          "nvr": "spice-client-win-8.10-3.el8_8.1",
+          "nevr": "spice-client-win-0:8.10-3.el8_8.1",
+          "id": 3918400,
+          "is_module": false,
+          "variant_arch": {
+            "AppStream-8.8.0.Z.TUS": {
+              "SRPMS": [
+                {
+                  "filename": "spice-client-win-8.10-3.el8_8.1.src.rpm",
+                  "is_signed": true
+                }
+              ],
+              "noarch": [
+                {
+                  "filename": "spice-client-win-x64-8.10-3.el8_8.1.noarch.rpm",
+                  "is_signed": true
+                },
+                {
+                  "filename": "spice-client-win-x86-8.10-3.el8_8.1.noarch.rpm",
+                  "is_signed": true
+                }
+              ]
+            }
+          },
+          "added_by": "anonymized-user@example.com",
+          "is_signed": true
+        }
+      }
+    ],
+    "sig_key": {
+      "name": "anonymized-key",
+      "keyid": "00000000"
+    },
+    "container_sig_key": {
+      "name": "anonymized-key",
+      "keyid": "00000000"
+    }
+  }
+}
