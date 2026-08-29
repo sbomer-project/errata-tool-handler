@@ -49,7 +49,7 @@ jobs:
 
       - name: Build Image
         id: build
-        uses: redhat-actions/buildah-build@v2
+        uses: redhat-actions/buildah-build@v3
         with:
           image: ${{ env.ERRATA_TOOL_HANDLER_IMAGE }}
           tags: latest ${{ steps.sha.outputs.sha }}
